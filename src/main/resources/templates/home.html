@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>TypeTeam - Take notes, Share notes!</title>
+</head>
+<body>
+<h1>Welcome to TypeTeam!</h1>
+<h3>Here you can write lecture notes, and share them between other users. please login/register to get started</h3>
+<div sec:authorize="isAuthenticated()">
+    <p>Logged in as: <span sec:authentication="principal.username"></span></p>
+    <p>
+    <a href="/notes">Notes</a>
+    </p>
+
+    <form action="#" method="POST" th:action="@{/logout}">
+        <input type="submit" value="Log out">
+    </form>
+</div>
+
+<div sec:authorize="isAnonymous()">
+    <a href="/loginPage">Log in</a>
+</div>
+</body>
+</html>
