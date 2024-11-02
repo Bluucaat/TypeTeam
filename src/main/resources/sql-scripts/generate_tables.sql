@@ -1,5 +1,5 @@
-USE
-`TypeTeam`;
+CREATE DATABASE  IF NOT EXISTS `TypeTeam`;
+USE `TypeTeam`;
 
 DROP TABLE IF EXISTS `user_notes`;
 DROP TABLE IF EXISTS `notes`;
