@@ -8,9 +8,9 @@ import lombok.Data;
 public @Data class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
-    private String userId;
+    @Column(name="id")
+    private String id;
 
-    @Column(name="pw")
-    private String password;
+    @Column(name="notes_id")
+    private String user_id;
 }
