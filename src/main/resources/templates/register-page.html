@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -9,20 +9,28 @@
           crossorigin="anonymous">
 </head>
 <body>
-<form method="POST" role="FORM"
-    th:action="@{/register/save}"
-    th:object="$(user)">
+<form method="POST" role="FORM" th:action="@{/register/save}"
+      th:object="${member}">
+    <div>
+        <label>Create a username</label>
+        <input type="text" th:field="*{userId}" name="userId"
+               placeholder="enter a username"/>
+        <p th:errors="*{userId}" class="text-danger"
+           th:if="${#fields.hasErrors('userId')}"></p>
+    </div>
     <div>
         <label>User Email</label>
         <input type="text" name="email"
                placeholder="enter an email"/>
-        <p th:errors = "*{email}" class="text-danger"
+        <p th:errors="*{email}" class="text-danger"
            th:if="${#fields.hasErrors('email')}"></p>
     </div>
     <div>
         <label>Password</label>
         <input type="password" name="password"
                placeholder="enter a password"/>
+        <p th:errors="*{password}" class="text-danger"
+           th:if="${#fields.hasErrors('password')}"></p>
     </div>
     <div>
         <label>Confirm your password</label>

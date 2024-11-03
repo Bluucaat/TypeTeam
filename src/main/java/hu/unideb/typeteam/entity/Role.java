@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 public @Data class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "role_id")
+    private int roleId;
 
     @Column(name = "role")
     private String role;
