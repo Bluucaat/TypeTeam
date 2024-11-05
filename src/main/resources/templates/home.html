@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:align="center"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,8 @@
 </div>
 
 <div sec:authorize="isAnonymous()">
-    <a href="/showLoginPage">Log in </a>/
+    <a href="/login">Login</a>
+    /
     <a href="/register">Register</a>
 </div>
 </body>

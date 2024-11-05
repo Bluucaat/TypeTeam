@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" th:align="center"
+      style="display: table; margin: auto;">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -9,35 +10,49 @@
           crossorigin="anonymous">
 </head>
 <body>
+<h1>Register</h1>
+<a href="/">Home</a>
 <form method="POST" role="FORM" th:action="@{/register/save}"
       th:object="${member}">
     <div>
-        <label>Create a username</label>
-        <input type="text" th:field="*{userId}" name="userId"
-               placeholder="enter a username"/>
+        <p>
+            <label>Create a username</label>
+            <input type="text" th:field="*{userId}" name="userId"
+                   placeholder="enter a username"/>
+        </p>
         <p th:errors="*{userId}" class="text-danger"
            th:if="${#fields.hasErrors('userId')}"></p>
     </div>
     <div>
+        <p>
         <label>User Email</label>
         <input type="text" name="email"
                placeholder="enter an email"/>
+        </p>
         <p th:errors="*{email}" class="text-danger"
            th:if="${#fields.hasErrors('email')}"></p>
     </div>
     <div>
+        <p>
         <label>Password</label>
         <input type="password" name="password"
                placeholder="enter a password"/>
+        </p>
         <p th:errors="*{password}" class="text-danger"
            th:if="${#fields.hasErrors('password')}"></p>
     </div>
     <div>
+        <p>
         <label>Confirm your password</label>
         <input type="password" name="passwordConfirm"
                placeholder="enter the password again"/>
+        </p>
     </div>
+    <p>
     <input type="submit" value="register">
+    </p>
 </form>
+<br>
+Already have an account? <a href="/login">Log in here</a>
 </body>
 </html>
