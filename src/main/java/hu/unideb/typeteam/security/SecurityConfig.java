@@ -23,9 +23,12 @@ public class SecurityConfig {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.setUsersByUsernameQuery
                 ("select user_id, pw, active from members where user_id=?");
-
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery
-                ("select user_id, role from roles where user_id=?");
+                ("SELECT m.user_id, r.role " +
+                        "FROM members_roles mr " +
+                        "JOIN roles r ON mr.role_id = r.role_id " +
+                        "JOIN members m ON mr.user_id = m.user_id " +
+                        "WHERE m.user_id = ?");
         return jdbcUserDetailsManager;
     }
 
@@ -37,8 +40,9 @@ public class SecurityConfig {
                         .permitAll()
                         .anyRequest()
                         .authenticated()
-        ).formLogin(form -> form.loginPage("/showLoginPage")
+        ).formLogin(form -> form.loginPage("/login")
                 .loginProcessingUrl("/authenticateUser")
+                .defaultSuccessUrl("/", true)
                 .permitAll());
         return http.build();
     }

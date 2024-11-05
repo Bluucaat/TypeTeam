@@ -19,8 +19,8 @@ CREATE TABLE `members` (
 
 INSERT INTO `members` (user_id, pw, email, active)
 VALUES
-    ('bluu', '{bcrypt}$2a$12$Lz/mcYZHc1D5kl1VaTYJouop8O/.MQvMRp2pexvZuY8v1cm9n55qu', 'test1@mail.com', 1),
-    ('test', '{bcrypt}$2a$12$HOGVXlx090ksYZx5IjB/XuD752mpjkx2XZf7A0zT.7nkBlZvNtnvC', 'test2@mail.com', 1);
+    ('bluu', '$2a$12$Lz/mcYZHc1D5kl1VaTYJouop8O/.MQvMRp2pexvZuY8v1cm9n55qu', 'test1@mail.com', 1),
+    ('test', '$2a$12$HOGVXlx090ksYZx5IjB/XuD752mpjkx2XZf7A0zT.7nkBlZvNtnvC', 'test2@mail.com', 1);
 
 CREATE TABLE `roles` (
                          `role_id` INT AUTO_INCREMENT PRIMARY KEY,
