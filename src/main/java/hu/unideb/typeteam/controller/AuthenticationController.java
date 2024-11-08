@@ -35,15 +35,19 @@ public class AuthenticationController {
     @PostMapping("/register/save")
     public String registerMember(@Valid @ModelAttribute("member") MemberDto memberDto,
                                  BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("member", memberDto);
+            return "register-page";
+        }
+
+        // Check if the user already exists
         Member existingMember = memberService.findUserByUserId(memberDto.getUserId());
         if (existingMember != null) {
             if (existingMember.getEmail() != null && !existingMember.getEmail().isEmpty()) {
-                bindingResult.rejectValue("email", null,
-                        "There is already an account with that email");
+                bindingResult.rejectValue("email", null, "There is already an account with that email");
             }
             if (existingMember.getUserId() != null && !existingMember.getUserId().isEmpty()) {
-                bindingResult.rejectValue("userId", null,
-                        "There is already an account with that username");
+                bindingResult.rejectValue("userId", null, "There is already an account with that username");
             }
         }
 
@@ -55,4 +59,5 @@ public class AuthenticationController {
         memberService.saveMember(memberDto);
         return "redirect:/register?success";
     }
+
 }

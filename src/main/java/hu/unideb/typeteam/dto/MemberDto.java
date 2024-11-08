@@ -8,10 +8,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public @Data class MemberDto {
-    @NotNull(message = "Username field can not be empty.")
+    @NotEmpty(message = "UserName can not be empty.")
     private String userId;
-    @NotNull(message = "Password field should not be empty.")
+    @NotEmpty(message = "Password field can not be empty")
     private String password;
-    @NotNull(message = "Email field can not be empty.")
+    @NotEmpty(message = "email can not be empty.")
     private String email;
+    @NotEmpty(message = "please confirm the password")
+    private String passwordConfirm;
+
+    @AssertTrue(message = "Passwords do not match.")
+    public boolean isPasswordMatching() {
+        return password.equals(passwordConfirm);
+    }
 }

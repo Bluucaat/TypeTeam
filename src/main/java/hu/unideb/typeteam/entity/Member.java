@@ -1,6 +1,7 @@
 package hu.unideb.typeteam.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -11,12 +12,15 @@ import java.util.List;
 public @Data class Member {
     @Id
     @Column(name = "user_id")
+    @NotNull(message = "required field")
     private String userId;
 
     @Column(name = "pw")
+    @NotNull(message = "required field")
     private String password;
 
     @Column(name = "email")
+    @NotNull(message = "required field")
     private String email;
 
     @Column(name = "active")
