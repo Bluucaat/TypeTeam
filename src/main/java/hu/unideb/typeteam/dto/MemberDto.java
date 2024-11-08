@@ -13,12 +13,8 @@ public @Data class MemberDto {
     @NotEmpty(message = "Password field can not be empty")
     private String password;
     @NotEmpty(message = "email can not be empty.")
+    @Email(message = "incorrect email given.")
     private String email;
     @NotEmpty(message = "please confirm the password")
     private String passwordConfirm;
-
-    @AssertTrue(message = "Passwords do not match.")
-    public boolean isPasswordMatching() {
-        return password.equals(passwordConfirm);
-    }
 }

@@ -19,7 +19,7 @@
             <label>Create a username</label>
             <input type="text" th:field="*{userId}" placeholder="enter a username"/>
         </p>
-        <p th:errors="*{userId}" class="text-danger"
+        <p th:errors="*{userId}" style="color: red"
            th:if="${#fields.hasErrors('userId')}"></p>
     </div>
     <div>
@@ -27,7 +27,7 @@
             <label>User Email</label>
             <input type="text" th:field="*{email}" placeholder="enter an email"/>
         </p>
-        <div th:errors="*{email}" class="text-danger"
+        <div th:errors="*{email}" style="color: red"
            th:if="${#fields.hasErrors('email')}"></div>
     </div>
     <div>
@@ -35,7 +35,7 @@
             <label>Password</label>
             <input type="password" th:field="*{password}" placeholder="enter a password"/>
         </p>
-        <p th:errors="*{password}" class="text-danger"
+        <p th:errors="*{password}" style="color: red"
            th:if="${#fields.hasErrors('password')}"></p>
     </div>
     <div>
@@ -43,7 +43,7 @@
             <label>Confirm your password</label>
             <input type="password" th:field="*{passwordConfirm}" placeholder="enter the password again"/>
         </p>
-        <p th:errors="*{passwordConfirm}" class="text-danger"></p>
+        <p th:errors="*{passwordConfirm}" style="color: red"></p>
     </div>
     <p>
         <input type="submit" value="register">

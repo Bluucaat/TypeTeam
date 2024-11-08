@@ -48,6 +48,11 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
+    @Override
+    public Member findUserByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
+
     private Role checkRoleExist() {
         Role role = new Role();
         role.setRole("USER");
