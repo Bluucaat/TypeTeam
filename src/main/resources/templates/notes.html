@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:align="center">
 <head>
     <meta charset="UTF-8">
-    <title>TypeTeam - Your Notes</title>
+    <title>TypeTeam</title>
+    <br><br>
+    <form action="#" method="POST" th:action="@{/logout}">
+        <input type="submit" value="Log out">
 </head>
 <body>
-<form action="#" method="POST" th:action="@{/logout}">
-    <input type="submit" value="Log out">
+<h1>Your notes</h1>
+<a href="/">Home</a>
+
 </form>
 </body>
 </html>
