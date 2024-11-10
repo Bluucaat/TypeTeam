@@ -22,13 +22,13 @@ public class SecurityConfig {
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.setUsersByUsernameQuery
-                ("select user_id, pw, active from members where user_id=?");
+                ("select user_id, pw, active from users where user_id=?");
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery
-                ("SELECT m.user_id, r.role " +
-                        "FROM members_roles mr " +
-                        "JOIN roles r ON mr.role_id = r.role_id " +
-                        "JOIN members m ON mr.user_id = m.user_id " +
-                        "WHERE m.user_id = ?");
+                ("SELECT u.user_id, r.role " +
+                        "FROM users_roles ur " +
+                        "JOIN roles r ON ur.role_id = r.role_id " +
+                        "JOIN users u ON ur.user_id = u.user_id " +
+                        "WHERE u.user_id = ?");
         return jdbcUserDetailsManager;
     }
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public @Data class MemberDto {
+public @Data class UserDto {
     @NotEmpty(message = "UserName can not be empty.")
     private String userId;
     @NotEmpty(message = "Password field can not be empty")

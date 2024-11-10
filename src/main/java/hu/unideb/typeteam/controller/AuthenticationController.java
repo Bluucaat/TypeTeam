@@ -1,8 +1,8 @@
 package hu.unideb.typeteam.controller;
 
-import hu.unideb.typeteam.dto.MemberDto;
-import hu.unideb.typeteam.entity.Member;
-import hu.unideb.typeteam.service.MemberService;
+import hu.unideb.typeteam.dto.UserDto;
+import hu.unideb.typeteam.entity.User;
+import hu.unideb.typeteam.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AuthenticationController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
-    public AuthenticationController(MemberService memberService) {
-        this.memberService = memberService;
+    public AuthenticationController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/login")
@@ -27,38 +27,38 @@ public class AuthenticationController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        MemberDto memberDto = new MemberDto();
-        model.addAttribute("member", memberDto);
+        UserDto userDto = new UserDto();
+        model.addAttribute("user", userDto);
         return "register-page";
     }
 
     @PostMapping("/register/save")
-    public String registerMember(@Valid @ModelAttribute("member") MemberDto memberDto,
+    public String registerMember(@Valid @ModelAttribute("user") UserDto userDto,
                                  BindingResult bindingResult, Model model) {
 
 
-        Member existingMemberUserId = memberService.findUserByUserId(memberDto.getUserId());
-        Member existingMemberEmail = memberService.findUserByEmail(memberDto.getEmail());
-        if (existingMemberUserId != null) {
+        User existingUserByUserId = userService.findUserByUserId(userDto.getUserId());
+        User existingUserByEmail = userService.findUserByEmail(userDto.getEmail());
+        if (existingUserByUserId != null) {
             bindingResult.rejectValue("userId", null, "There is already an account with that username");
             return "register-page";
         }
-        if (existingMemberEmail != null) {
+        if (existingUserByEmail != null) {
             bindingResult.rejectValue("email", null, "There is already an account with that email");
             return "register-page";
         }
-        if (!memberDto.getPassword().equals(memberDto.getPasswordConfirm())) {
+        if (!userDto.getPassword().equals(userDto.getPasswordConfirm())) {
             bindingResult.rejectValue("passwordConfirm", null, "Passwords do not match");
             return "register-page";
         }
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("member", memberDto);
+            model.addAttribute("user", userDto);
             return "register-page";
         }
 
 
-        memberService.saveMember(memberDto);
+        userService.saveUser(userDto);
         return "redirect:/register?success";
     }
 
