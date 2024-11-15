@@ -11,7 +11,7 @@
 <div sec:authorize="isAuthenticated()">
     <p>Logged in as: <span sec:authentication="principal.username"></span></p>
     <p>
-    <a href="/notes">Notes</a>
+        <a href="/notes">Notes</a>
     </p>
 
     <form action="#" method="POST" th:action="@{/logout}">

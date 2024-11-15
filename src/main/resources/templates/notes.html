@@ -1,15 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" th:align="center">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>TypeTeam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeTeam - Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
 </head>
-<body>
-<h1>Your notes</h1>
-<a href="/">Home</a>
-<br><br>
-<form action="#" method="POST" th:action="@{/logout}">
-    <input type="submit" value="Log out">
-</form>
+<body class="bg-light">
+<div class="container py-4">
+    <h1 class="text-center mb-4">Notes</h1>
+    <h2 class="text-muted mb-3">Shared Notes</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" th:each="tmpNote : ${sharedNotes}">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-primary" th:text="${tmpNote.title}"></h5>
+                    <p class="text-end text-muted small">Created by: <span th:text="${tmpNote.creator.userId}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-muted mt-5 mb-3">Your Notes</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" th:each="tmpNote : ${ownNotes}">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-primary" th:text="${tmpNote.title}"></h5>
+                    <p class="text-end text-muted small">Created by: <span th:text="${tmpNote.creator.userId}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="/" class="btn btn-outline-primary me-2">Home</a>
+        <form action="#" method="POST" th:action="@{/logout}" class="d-inline">
+            <button type="submit" class="btn btn-danger">Log out</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-wHtmOy2SZUvjR02Cqj/OGh1RxI9e2N2uwm0+Y4ob0N1BQ20LN0GuAGGHj0QUV7mL"
+        crossorigin="anonymous"></script>
 </body>
 </html>
