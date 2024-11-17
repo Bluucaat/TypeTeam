@@ -1,7 +1,9 @@
 package hu.unideb.typeteam.service;
 
 import hu.unideb.typeteam.entity.Note;
+import hu.unideb.typeteam.entity.User;
 import hu.unideb.typeteam.repository.NoteRepository;
+import hu.unideb.typeteam.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,10 +13,12 @@ import java.util.List;
 public class NoteServiceImpl implements NoteService {
 
     private final NoteRepository noteRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public NoteServiceImpl(NoteRepository noteRepository) {
+    public NoteServiceImpl(NoteRepository noteRepository, UserRepository userRepository) {
         this.noteRepository = noteRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Note> getNotesSharedWithUser(String userId) {
@@ -23,5 +27,15 @@ public class NoteServiceImpl implements NoteService {
 
     public List<Note> getNotesCreatedByUser(String userId) {
         return noteRepository.findAccessibleNotesCreatedByUser(userId);
+    }
+
+    @Override
+    public Note findById(int noteId) {
+        return noteRepository.findById(noteId);
+    }
+
+    @Override
+    public void save(Note note) {
+        noteRepository.save(note);
     }
 }

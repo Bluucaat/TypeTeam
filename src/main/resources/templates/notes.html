@@ -11,6 +11,7 @@
 <body class="bg-light">
 <div class="container py-4">
     <h1 class="text-center mb-4">Notes</h1>
+
     <h2 class="text-muted mb-3">Shared Notes</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col" th:each="tmpNote : ${sharedNotes}">
@@ -25,13 +26,38 @@
     </div>
 
     <h2 class="text-muted mt-5 mb-3">Your Notes</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createNoteModal">
+        +
+    </button>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
         <div class="col" th:each="tmpNote : ${ownNotes}">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
                     <h5 class="card-title text-primary" th:text="${tmpNote.title}"></h5>
                     <p class="text-end text-muted small">Created by: <span th:text="${tmpNote.creator.userId}"></span>
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createNoteModal" tabindex="-1" aria-labelledby="createNoteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createNoteModalLabel">Create New Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createNoteForm" th:action="@{/notes}" method="POST">
+                        <div class="mb-3">
+                            <label for="noteTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="noteTitle" name="title" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -46,7 +72,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-wHtmOy2SZUvjR02Cqj/OGh1RxI9e2N2uwm0+Y4ob0N1BQ20LN0GuAGGHj0QUV7mL"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
 </html>

@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TypeteamApplication {
-
+public class TypeTeamApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TypeteamApplication.class, args);
+        SpringApplication.run(TypeTeamApplication.class, args);
     }
-
 }
