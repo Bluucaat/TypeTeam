@@ -1,0 +1,32 @@
+package hu.unideb.typeteam.controller;
+
+import hu.unideb.typeteam.entity.User;
+import hu.unideb.typeteam.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+@Controller
+public class DashboardController{
+    private final UserService userService;
+
+    public DashboardController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        List<User> userList = userService.findAllUsers();
+        model.addAttribute("users", userList);
+        return "dashboard";
+    }
+
+    @GetMapping("/dashboard/delete")
+    public String delete(@RequestParam("userId") String id) {
+        userService.deleteById(id);
+        return "redirect:/dashboard";
+    }
+}

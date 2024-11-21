@@ -41,6 +41,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
+
 
     @Override
     public User findUserByUserId(String userId) {
@@ -51,6 +56,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        userRepository.deleteById(id);
     }
 
     private Role checkRoleExist() {

@@ -51,40 +51,39 @@ CREATE TABLE `users_notes`
     CONSTRAINT `fk_user_note_note` FOREIGN KEY (`note_id`) REFERENCES `notes` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 INSERT INTO `users` (user_id, pw, email, active)
-VALUES ('bluu', '$2a$12$Lz/mcYZHc1D5kl1VaTYJouop8O/.MQvMRp2pexvZuY8v1cm9n55qu', 'mail@mail.com', 1),
-       ('test', '$2a$12$HOGVXlx090ksYZx5IjB/XuD752mpjkx2XZf7A0zT.7nkBlZvNtnvC', 'mail@mail.com', 1);
+VALUES ('admin', '$2a$12$PFFSrm059uEhOoY6XL/n7ess0PnsmHNcsHc.SbDExR99PR0Tlj6Ju', 'mail@mail.com', 1),
+       ('test', '$2a$12$HOGVXlx090ksYZx5IjB/XuD752mpjkx2XZf7A0zT.7nkBlZvNtnvC', 'mail2@mail.com', 1),
+       ('test2', '$2a$12$P7JDTWcAd8n24AoL9o0on.6cdaYrH3eMhJDYEQFrZorgoiwd/ypsS', 'mail3@mail.com', 1);
 
 INSERT INTO `roles` (role)
-VALUES ('USER'),
-       ('ADMIN');
+VALUES ('ROLE_USER'),
+       ('ROLE_ADMIN');
 
 INSERT INTO `users_roles` (user_id, role_id)
-VALUES ('bluu', 1),
-       ('test', 1);
+VALUES ('admin', 2),
+       ('test', 1),
+       ('test2', 1);
 
 INSERT INTO `notes` (title, content, creator_user_id)
-VALUES ('TODO list', 'Gotta do my things', 'bluu'),
-       ('Practce Project', 'Remember the deadline!', 'bluu'),
-       ('History lecture', 'This is my history note', 'bluu'),
-
-       ('Social Psychology Lecture', 'Preparations for the finals', 'test'),
-       ('Math Class Notes', 'Math class from my uni', 'test'),
-       ('Hobby Notes', 'My hobbies go here', 'test');
-
-
+VALUES ('note1', 'This is a note for admin', 'admin'),
+       ('note2', 'This is a note for test', 'test'),
+       ('note3', 'This is a note for admin', 'admin'),
+       ('also a title', 'This is a note for test', 'test'),
+       ('also another title', 'This is a note for admin', 'admin'),
+       ('note4', 'This is a note for admin', 'admin'),
+       ('cool note', 'Note made by test2', 'test2');
 
 INSERT INTO `users_notes` (user_id, note_id)
-VALUES ('bluu', 1),
-       ('bluu', 2),
-       ('bluu', 3),
-
+VALUES ('admin', 1),
+       ('admin', 2),
+       ('admin', 3),
+       ('admin', 7),
+       ('test', 2),
+       ('test', 1),
+       ('test', 3),
        ('test', 4),
        ('test', 5),
        ('test', 6),
-
-       ('bluu', 4),
-
-       ('test', 1),
-       ('test', 2);
+       ('test2', 7),
+       ('test', 7);
