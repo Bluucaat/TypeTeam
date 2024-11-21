@@ -2,7 +2,12 @@
 
 TypeTeam is a web application that allows users to create, manage, and share notes with others. Built with **Spring Boot**, featuring bcrypt password hashing, and role-based access.
 
-![](http://localhost:8080/images/site-image.png)
+<img src="src/main/resources/static/images/home-screenshot.png" alt="Final State" width="350">
+
+<img src="src/main/resources/static/images/notes-screenshot.png" alt="Final State" width="350">
+
+
+
 
 
 ## Features
