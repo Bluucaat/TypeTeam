@@ -14,12 +14,12 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfig {
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+    protected UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.setUsersByUsernameQuery
                 ("select user_id, pw, active from users where user_id=?");
@@ -33,17 +33,22 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurator ->
-                configurator
-                        .requestMatchers("/", "/register/**")
+                        configurator
+                                .requestMatchers("/", "/register/**", "css/**", "images/**")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
+                ).formLogin(form -> form.loginPage("/login")
+                        .loginProcessingUrl("/authenticateUser")
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
-                        .anyRequest()
-                        .authenticated()
-        ).formLogin(form -> form.loginPage("/login")
-                .loginProcessingUrl("/authenticateUser")
-                .defaultSuccessUrl("/", true)
-                .permitAll());
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                );
         return http.build();
     }
 }

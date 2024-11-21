@@ -1,28 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:align="center"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TypeTeam - Take notes, Share notes!</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+
 </head>
-<body>
-<h1>Welcome to TypeTeam!</h1>
-<h3>Here you can write lecture notes, and share them between other users. please login/register to get started</h3>
-<div sec:authorize="isAuthenticated()">
-    <p>Logged in as: <span sec:authentication="principal.username"></span></p>
-    <p>
-        <a href="/notes">Notes</a>
-    </p>
+<body class="bg-light">
 
-    <form action="#" method="POST" th:action="@{/logout}">
-        <input type="submit" value="Log out">
-    </form>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            <button class="btn btn-outline-light">
+                <img src="/images/home-logo.png" alt="Home" width="45" height="40" class="top-bar-logo">
+            </button>
+        </a>
+
+        <div class="d-flex flex-grow-1 justify-content-center">
+            <a class="navbar-brand" href="#" style="font-size: 2.5rem;">TypeTeam</a>
+        </div>
+
+        <div class="ms-auto">
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/images/user-logo.png" alt="User" width="38" height="38" class="rounded-circle top-bar-logo">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li><a class="dropdown-item" href="/adminDashboard">Dashboard</a></li>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <li><a class="dropdown-item" href="/notes">My Notes</a></li>
+                        <li>
+                            <form action="#" method="POST" th:action="@{/logout}" class="d-inline">
+                                <button type="submit" class="dropdown-item">Log out</button>
+                            </form>
+                        </li>
+                    </div>
+
+                    <div sec:authorize="isAnonymous()">
+                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                        <li><a class="dropdown-item" href="/register">Register</a></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="hero-card">
+        <h3>Welcome to TypeTeam</h3>
+        <p>TypeTeam is more than just a place to take notes—it's an interactive space for sharing, collaborating, and growing your knowledge with others. Whether you're attending a lecture, preparing for exams, or simply need to organize your thoughts, TypeTeam is here to help!</p>
+
+        <p>Our platform allows you to easily take and organize your notes, and seamlessly share them with other users. With TypeTeam, you’ll never miss out on key information, and you can connect with other learners to exchange ideas and tips. Join a community where your knowledge and efforts will always have value.</p>
+
+        <p>If you're ready to start taking notes and collaborating with your peers, just log in or register below.</p>
+
+        <div sec:authorize="isAuthenticated()">
+            <p>Logged in as: <span sec:authentication="principal.username"></span></p>
+            <p>
+                <a href="/notes" class="btn btn-primary">Go to Notes</a>
+            </p>
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+            <a href="/login" class="btn btn-success">Login</a>
+            /
+            <a href="/register" class="btn btn-warning">Register</a>
+        </div>
+
+        <p class="cta-text">Already a user? Log in to start sharing your notes. New to TypeTeam? Register to begin your journey with us!</p>
+    </div>
 </div>
 
-<div sec:authorize="isAnonymous()">
-    <a href="/login">Login</a>
-    /
-    <a href="/register">Register</a>
-</div>
+<footer class="bg-primary text-white py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <p class="mb-0">© 2024 TypeTeam. All rights reserved.</p>
+
+        <div>
+            <a href="#" class="text-white mx-2">Company</a>
+            <a href="#" class="text-white mx-2">Contact</a>
+            <a href="#" class="text-white mx-2">Pricing</a>
+            <a href="#" class="text-white mx-2">Legal</a>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

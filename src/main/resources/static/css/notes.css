@@ -1,0 +1,77 @@
+.btn-outline-light:hover,
+.btn-outline-light:focus,
+.btn-outline-light[aria-expanded="true"] {
+    background-color: white;
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+.btn-outline-light:hover .top-bar-logo,
+.btn-outline-light:focus .top-bar-logo,
+.btn-outline-light[aria-expanded="true"] .top-bar-logo {
+    filter: invert(1);
+}
+
+.top-bar-logo {
+    transition: filter 0.3s ease;
+}
+
+.note-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.note-card .card-title {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.note-card .note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.note-footer .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body form .form-control {
+    margin-bottom: 1rem;
+}
+
+.note-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+}
+
+.navbar .btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .btn:hover {
+    transform: translateY(-3px);
+    background-color: #ffffff;
+    border-color: #ffffff;
+}

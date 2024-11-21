@@ -6,9 +6,10 @@ import hu.unideb.typeteam.entity.User;
 import java.util.List;
 
 public interface NoteService {
-    public List<Note> getNotesSharedWithUser(String userId);
-    public List<Note> getNotesCreatedByUser(String userId);
+    List<Note> getNotesSharedWithUser(String userId);
+    List<Note> getNotesCreatedByUser(String userId);
     Note findById(int noteId);
-    public void save(Note note);
+    void save(Note note);
+    void delete(Note note);
 
 }

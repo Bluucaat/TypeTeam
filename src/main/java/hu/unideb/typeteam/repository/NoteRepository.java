@@ -14,6 +14,8 @@ public interface NoteRepository extends JpaRepository<Note, String> {
 
     Note findById(int id);
 
+    Note deleteById(int id);
+
     @Query("SELECT n FROM Note n JOIN n.usersWithAccess u " +
             "WHERE u.userId = :userId AND n.creator.userId <> :userId")
     List<Note> findAccessibleNotesNotCreatedByUser(@Param("userId") String userId);
