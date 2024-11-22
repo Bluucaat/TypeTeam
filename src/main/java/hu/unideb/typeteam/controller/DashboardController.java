@@ -5,8 +5,8 @@ import hu.unideb.typeteam.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
@@ -24,8 +24,8 @@ public class DashboardController{
         return "dashboard";
     }
 
-    @GetMapping("/dashboard/delete")
-    public String delete(@RequestParam("userId") String id) {
+    @PostMapping("/dashboard/delete/{userId}")
+    public String delete(@PathVariable("userId") String id) {
         userService.deleteById(id);
         return "redirect:/dashboard";
     }

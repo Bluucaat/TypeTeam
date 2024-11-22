@@ -5,7 +5,6 @@ import hu.unideb.typeteam.entity.User;
 import hu.unideb.typeteam.repository.NoteRepository;
 import hu.unideb.typeteam.repository.UserRepository;
 import hu.unideb.typeteam.service.NoteServiceImpl;
-import hu.unideb.typeteam.service.UserServiceImpl;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
