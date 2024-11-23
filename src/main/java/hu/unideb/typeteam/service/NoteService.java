@@ -1,7 +1,6 @@
 package hu.unideb.typeteam.service;
 
 import hu.unideb.typeteam.entity.Note;
-import hu.unideb.typeteam.entity.User;
 
 import java.util.List;
 

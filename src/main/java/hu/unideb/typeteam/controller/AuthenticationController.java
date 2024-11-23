@@ -61,5 +61,4 @@ public class AuthenticationController {
         userService.saveUser(userDto);
         return "redirect:/register?success";
     }
-
 }

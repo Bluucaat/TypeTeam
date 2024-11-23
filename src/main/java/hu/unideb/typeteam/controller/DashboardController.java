@@ -29,4 +29,11 @@ public class DashboardController{
         userService.deleteById(id);
         return "redirect:/dashboard";
     }
+
+    @GetMapping("/dashboard/edit/{userId}")
+    public String edit(@PathVariable("userId") String id, Model model) {
+        User user = userService.findUserByUserId(id);
+        model.addAttribute("user", user);
+        return "/user-edit";
+    }
 }

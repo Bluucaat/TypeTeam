@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class NotesController {
@@ -53,10 +54,34 @@ public class NotesController {
         return "redirect:/notes";
     }
 
+    @GetMapping("/editNote/{id}")
+    public String editNotePage(@PathVariable("id") int id, Model model) {
+        Note note = noteServiceImpl.findById(id);
+        User currentUser = userRepository.findByUserId(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (!currentUser.getAccessibleNotes().contains(note)) {
+            return "redirect:/notes";
+        }
+        model.addAttribute("note", note);
+        return "/edit-note";
+    }
+
+    @PostMapping("/editNote/{id}")
+    public String updateNote(@PathVariable("id") int id, @RequestParam String title, @RequestParam String content) {
+        Note note = noteServiceImpl.findById(id);
+        if (note != null) {
+            note.setTitle(title);
+            note.setContent(content);
+            noteServiceImpl.save(note);
+        }
+        return "redirect:/notes";
+    }
+
+
     @PostMapping("/deleteNote/{id}")
     public String deleteNote(@PathVariable("id") int id) {
         Note note = noteServiceImpl.findById(id);
-        if (note != null) {
+        String currentUserId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (note != null && Objects.equals(note.getCreator().getUserId(), currentUserId)) {
             noteServiceImpl.delete(note);
         }
         return "redirect:/notes";
