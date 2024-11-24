@@ -12,13 +12,13 @@ import java.util.Set;
 public @Data class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name="content")
+    @Column(name = "content")
     private String content;
 
     @ManyToOne
@@ -28,7 +28,7 @@ public @Data class Note {
     @ManyToMany(mappedBy = "accessibleNotes")
     private Set<User> usersWithAccess = new HashSet<>();
 
-    public Note(){
+    public Note() {
     }
 
     @Override

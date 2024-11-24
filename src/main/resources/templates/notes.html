@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
                 <span class="creator-info" th:text="${tmpNote.creator.userId}"></span>
             </p>
             <div class="note-footer">
-                <a href="#" class="btn btn-primary btn-sm" th:href="@{/editNote/{id}(id=${tmpNote.id})}">Edit</a>
+                <a href="#" class="btn btn-primary btn-sm" th:href="@{/notes/edit/{id}(id=${tmpNote.id})}">Edit</a>
                 <button type="button" class="btn btn-danger btn-sm"
                         data-bs-toggle="modal"
                         th:data-bs-target="'#deleteNoteModal-' + ${tmpNote.id}">
@@ -44,7 +44,7 @@
                 <span class="creator-info" th:text="${tmpNote.creator.userId}"></span>
             </p>
             <div class="note-footer">
-                <a href="#" class="btn btn-primary btn-sm" th:href="@{/editNote/{id}(id=${tmpNote.id})}">Edit</a>
+                <a href="#" class="btn btn-primary btn-sm" th:href="@{/notes/edit/{id}(id=${tmpNote.id})}">Edit</a>
             </div>
         </div>
     </div>

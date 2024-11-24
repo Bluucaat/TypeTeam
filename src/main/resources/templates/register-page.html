@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,25 +17,27 @@
     <form method="POST" role="FORM" th:action="@{/register/save}" th:object="${user}">
         <div class="form-group">
             <label for="userId">Create a username</label>
-            <input type="text" th:field="*{userId}" placeholder="Enter a username" id="userId" class="form-control" />
+            <input type="text" th:field="*{userId}" placeholder="Enter a username" id="userId" class="form-control"/>
             <p th:errors="*{userId}" class="error-message" th:if="${#fields.hasErrors('userId')}"></p>
         </div>
 
         <div class="form-group">
             <label for="email">User Email</label>
-            <input type="text" th:field="*{email}" placeholder="Enter an email" id="email" class="form-control" />
+            <input type="text" th:field="*{email}" placeholder="Enter an email" id="email" class="form-control"/>
             <p th:errors="*{email}" class="error-message" th:if="${#fields.hasErrors('email')}"></p>
         </div>
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" th:field="*{password}" placeholder="Enter a password" id="password" class="form-control" />
+            <input type="password" th:field="*{password}" placeholder="Enter a password" id="password"
+                   class="form-control"/>
             <p th:errors="*{password}" class="error-message" th:if="${#fields.hasErrors('password')}"></p>
         </div>
 
         <div class="form-group">
             <label for="passwordConfirm">Confirm your password</label>
-            <input type="password" th:field="*{passwordConfirm}" placeholder="Enter the password again" id="passwordConfirm" class="form-control" />
+            <input type="password" th:field="*{passwordConfirm}" placeholder="Enter the password again"
+                   id="passwordConfirm" class="form-control"/>
             <p th:errors="*{passwordConfirm}" class="error-message" th:if="${#fields.hasErrors('passwordConfirm')}"></p>
         </div>
 

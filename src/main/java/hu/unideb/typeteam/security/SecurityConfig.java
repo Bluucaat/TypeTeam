@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 .requestMatchers("/", "/register/**", "css/**", "images/**")
                                 .permitAll()
                                 .requestMatchers("/dashboard/**")
-                                .hasAuthority("ROLE_ADMIN")  // Explicitly use "ROLE_" prefix if you want it
+                                .hasAuthority("ROLE_ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 ).formLogin(form -> form.loginPage("/login")

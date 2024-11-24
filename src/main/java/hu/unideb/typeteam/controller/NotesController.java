@@ -54,7 +54,7 @@ public class NotesController {
         return "redirect:/notes";
     }
 
-    @GetMapping("/editNote/{id}")
+    @GetMapping("/notes/edit/{id}")
     public String editNotePage(@PathVariable("id") int id, Model model) {
         Note note = noteServiceImpl.findById(id);
         User currentUser = userRepository.findByUserId(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -65,7 +65,7 @@ public class NotesController {
         return "/edit-note";
     }
 
-    @PostMapping("/editNote/{id}")
+    @PostMapping("/notes/edit/{id}")
     public String updateNote(@PathVariable("id") int id, @RequestParam String title, @RequestParam String content) {
         Note note = noteServiceImpl.findById(id);
         if (note != null) {

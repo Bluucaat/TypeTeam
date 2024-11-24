@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title><!DOCTYPE html>
@@ -18,7 +18,7 @@
 <div th:replace="header :: navbar"></div>
 <div class="container py-4">
     <h1>Edit Note</h1>
-    <form th:action="@{/editNote/{id}(id=${note.id})}" method="POST">
+    <form th:action="@{/notes/edit/{id}(id=${note.id})}" method="POST">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title" th:value="${note.title}" required>

@@ -1,18 +1,19 @@
 .full-height {
     min-height: 70vh;
 }
+
 .table-primary th {
     background-color: #0d6efd;
     color: white;
+
 }
-h2 {
-    text-align: center;
-}
-.container{
+
+.container {
     display: flex;
     justify-content: center;
 
 }
+
 .table-container {
     margin-top: 3rem;
     border-radius: 0.4rem;

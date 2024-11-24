@@ -1,6 +1,5 @@
 package hu.unideb.typeteam.controller;
 
-import hu.unideb.typeteam.dto.UserDto;
 import hu.unideb.typeteam.entity.User;
 import hu.unideb.typeteam.service.UserService;
 import jakarta.validation.Valid;
@@ -27,28 +26,24 @@ public class AuthenticationController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        UserDto userDto = new UserDto();
+        User userDto = new User();
         model.addAttribute("user", userDto);
         return "register-page";
     }
 
     @PostMapping("/register/save")
-    public String registerMember(@Valid @ModelAttribute("user") UserDto userDto,
+    public String registerMember(@Valid @ModelAttribute("user") User userDto,
                                  BindingResult bindingResult, Model model) {
-
 
         User existingUserByUserId = userService.findUserByUserId(userDto.getUserId());
         User existingUserByEmail = userService.findUserByEmail(userDto.getEmail());
+
         if (existingUserByUserId != null) {
             bindingResult.rejectValue("userId", null, "There is already an account with that username");
             return "register-page";
         }
         if (existingUserByEmail != null) {
             bindingResult.rejectValue("email", null, "There is already an account with that email");
-            return "register-page";
-        }
-        if (!userDto.getPassword().equals(userDto.getPasswordConfirm())) {
-            bindingResult.rejectValue("passwordConfirm", null, "Passwords do not match");
             return "register-page";
         }
 
@@ -58,7 +53,14 @@ public class AuthenticationController {
         }
 
 
-        userService.saveUser(userDto);
+        User user = new User();
+        user.setUserId(userDto.getUserId());
+        user.setPassword(userDto.getPassword());
+        user.setEmail(userDto.getEmail());
+
+        userService.saveUser(user);
+
         return "redirect:/register?success";
     }
+
 }

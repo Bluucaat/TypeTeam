@@ -1,6 +1,5 @@
 package hu.unideb.typeteam.service;
 
-import hu.unideb.typeteam.dto.UserDto;
 import hu.unideb.typeteam.entity.Role;
 import hu.unideb.typeteam.entity.User;
 import hu.unideb.typeteam.repository.RoleRepository;
@@ -8,6 +7,7 @@ import hu.unideb.typeteam.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,20 +26,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(UserDto userDto) {
-        User user = new User();
-        user.setUserId(userDto.getUserId());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setEmail(userDto.getEmail());
+    public void saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role role = roleRepository.findByRole("USER");
-        if (role == null) {
-            role = checkRoleExist();
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            Role defaultRole = roleRepository.findByRole("ROLE_USER");
+            if (defaultRole == null) {
+                defaultRole = new Role();
+                defaultRole.setRole("ROLE_USER");
+                roleRepository.save(defaultRole);
+            }
+            user.setRoles(new ArrayList<>(List.of(defaultRole)));
         }
-        user.setRoles(List.of(role));
-        user.setActive(true);
+
         userRepository.save(user);
     }
+
 
     @Override
     public List<User> findAllUsers() {
