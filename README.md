@@ -44,7 +44,7 @@ TypeTeam is a web application that allows users to create, manage, and share not
 
 2. **Run the SQL script in resources/sql-scripts**
 
-3. **Set up the database.properties file. Example:**
+3. **Create the database.properties file in the resources folder. Example of how to set it up:**
 4. ```bash
    spring.datasource.url=jdbc:mysql://localhost:3306/TypeTeam
     spring.datasource.username=yourusername
