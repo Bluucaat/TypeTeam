@@ -1,0 +1,27 @@
+.btn-outline-light:hover,
+.btn-outline-light:focus,
+.btn-outline-light[aria-expanded="true"] {
+    background-color: white;
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+.btn-outline-light:hover .top-bar-logo,
+.btn-outline-light:focus .top-bar-logo,
+.btn-outline-light[aria-expanded="true"] .top-bar-logo {
+    filter: invert(1);
+}
+.navbar .btn {
+    padding: 0.5rem 1.2rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .btn:hover {
+    transform: translateY(-3px);
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.top-bar-logo {
+    transition: filter 0.3s ease;
+}

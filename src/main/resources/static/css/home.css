@@ -1,21 +1,3 @@
-.btn-outline-light:hover,
-.btn-outline-light:focus,
-.btn-outline-light[aria-expanded="true"] {
-background-color: white;
-border-color: white;
-transform: translateY(-3px);
-}
-
-.btn-outline-light:hover .top-bar-logo,
-.btn-outline-light:focus .top-bar-logo,
-.btn-outline-light[aria-expanded="true"] .top-bar-logo {
-filter: invert(1);
-}
-
-.top-bar-logo {
-transition: filter 0.3s ease;
-}
-
 .hero-card {
 background-color: #f8f9fa;
 border-radius: 15px;
