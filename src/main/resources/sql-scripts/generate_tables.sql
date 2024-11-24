@@ -66,18 +66,20 @@ VALUES ('admin', 2),
        ('test2', 1);
 
 INSERT INTO `notes` (title, content, creator_user_id)
-VALUES ('note1', 'This is a note for admin', 'admin'),
-       ('note2', 'This is a note for test', 'test'),
-       ('note3', 'This is a note for admin', 'admin'),
-       ('also a title', 'This is a note for test', 'test'),
-       ('also another title', 'This is a note for admin', 'admin'),
-       ('note4', 'This is a note for admin', 'admin'),
-       ('cool note', 'Note made by test2', 'test2');
+VALUES ('Biology Lecture Notes', 'This is a biology note, from the biology class', 'admin'),
+       ('Psychology Notes', 'This is a note for test, about psychology.', 'admin'),
+       ('TODO List', 'I need to do stuff', 'admin'),
+       ('Social Psychology Exam Preparations', 'This is a note for test', 'test'),
+       ('Math Lecture Notes', 'Some math notes', 'admin'),
+       ('Plans for Japan trip', 'plans for japan go here', 'test2'),
+       ('Random notes', 'Note made by test2', 'test2');
 
 INSERT INTO `users_notes` (user_id, note_id)
 VALUES ('admin', 1),
        ('admin', 2),
        ('admin', 3),
+       ('admin', 4),
+       ('admin', 6),
        ('admin', 7),
        ('test', 2),
        ('test', 1),
