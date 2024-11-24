@@ -12,7 +12,11 @@
 <body>
 
 <div class="container">
+
     <h2 class="form-title">Register</h2>
+    <div id="successMessage" class="alert alert-success" th:if="${param.success}" role="alert">
+        Registration successful! You can now log in.
+    </div>
 
     <form method="POST" role="FORM" th:action="@{/register/save}" th:object="${user}">
         <div class="form-group">
@@ -32,13 +36,6 @@
             <input type="password" th:field="*{password}" placeholder="Enter a password" id="password"
                    class="form-control"/>
             <p th:errors="*{password}" class="error-message" th:if="${#fields.hasErrors('password')}"></p>
-        </div>
-
-        <div class="form-group">
-            <label for="passwordConfirm">Confirm your password</label>
-            <input type="password" th:field="*{passwordConfirm}" placeholder="Enter the password again"
-                   id="passwordConfirm" class="form-control"/>
-            <p th:errors="*{passwordConfirm}" class="error-message" th:if="${#fields.hasErrors('passwordConfirm')}"></p>
         </div>
 
         <button type="submit" class="btn btn-primary">Register</button>

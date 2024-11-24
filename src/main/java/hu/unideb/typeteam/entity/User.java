@@ -1,6 +1,8 @@
 package hu.unideb.typeteam.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -11,15 +13,16 @@ import java.util.*;
 public @Data class User {
     @Id
     @Column(name = "user_id")
-    @NotNull(message = "required field")
+    @NotBlank(message = "Required field")
     private String userId;
 
     @Column(name = "pw")
-    @NotNull(message = "required field")
+    @NotBlank(message = "Required field")
     private String password;
 
     @Column(name = "email")
-    @NotNull(message = "required field")
+    @NotBlank(message = "Required field")
+    @Email
     private String email;
 
     @Column(name = "active")
