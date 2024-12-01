@@ -27,7 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (!user.getPassword().startsWith("$2a$")) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
 
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
             Role defaultRole = roleRepository.findByRole("ROLE_USER");
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
     }
+
 
 
     @Override
