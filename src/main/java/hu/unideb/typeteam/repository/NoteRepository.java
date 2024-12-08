@@ -23,3 +23,4 @@ public interface NoteRepository extends JpaRepository<Note, String> {
     List<Note> findAccessibleNotesCreatedByUser(@Param("userId") String userId);
 
 }
+                           
