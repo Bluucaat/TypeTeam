@@ -1,11 +1,9 @@
 # TypeTeam - Notes Application
 
 TypeTeam is a web application that allows users to create, manage, and share notes with others. Built with **Spring Boot**, featuring bcrypt password hashing, and role-based access.
-
-<img src="src/main/resources/static/images/home-screenshot.png" alt="Final State" width="350">
-
-<img src="src/main/resources/static/images/notes-screenshot.png" alt="Final State" width="350">
-
+![Screenshot1](Screenshots/home-screenshot.png)
+![Screenshot2](Screenshots/notes-screenshot.png)
+![Screenshot2](Screenshots/notes-edit-screenshot.png)
 
 
 
@@ -13,10 +11,16 @@ TypeTeam is a web application that allows users to create, manage, and share not
 ## Features
 
 - **User Authentication**: Users can register and log in, passwords are stored using **bcrypt** hashing
-- **Notes CRUD operations**: Users can create, view, edit (under progress), and delete notes.
-- **Sharing Notes**: Notes can be shared with other users. (under progress)
+
+
+- **CRUD operations**: Users can create, view, edit, and delete notes. Admins can manage the roles of users.
+
+
+- **Sharing Notes**: Notes can be shared with other users.
+
+
 - **Role-based Access**: The application includes basic role management for role-based access.
-- 
+
 ## Technologies Used
 
 - **Spring Boot**: Backend framework for building the application.
@@ -31,7 +35,7 @@ TypeTeam is a web application that allows users to create, manage, and share not
 
 - Java 17 or newer
 - Maven
-- Spring Boot dependencies
+- MySQL Workbench, (Community Server)
 
 ## Setup and Installation
 
