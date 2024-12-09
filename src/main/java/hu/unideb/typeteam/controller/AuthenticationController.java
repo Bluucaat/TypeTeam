@@ -57,6 +57,7 @@ public class AuthenticationController {
         user.setUserId(userDto.getUserId());
         user.setPassword(userDto.getPassword());
         user.setEmail(userDto.getEmail());
+        user.setActive(true);
 
         userService.saveUser(user);
 
